@@ -1,0 +1,110 @@
+---
+import { frameworks } from '../../data/navigation';
+const currentPath = Astro.url.pathname;
+---
+
+<header class="fixed top-0 left-0 right-0 z-50">
+    <nav class="container mx-auto px-4 py-6">
+        <!-- Desktop Navigation -->
+        <div class="hidden md:flex justify-between items-center">
+            <div></div> <!-- Empty div for centering -->
+            <div class="bg-gray-900/50 backdrop-blur-md px-6 py-2.5 rounded-full border border-gray-800/50">
+                {frameworks.map((framework, index) => (
+                    <>
+                        {index !== 0 && (
+                            <span class="mx-4 text-gray-600">|</span>
+                        )}
+                        <a
+                            href={framework.path}
+                            class={`relative px-2 py-1 text-sm transition-all duration-300 font-medium font-sans group hover:scale-110
+                                ${currentPath === framework.path 
+                                    ? 'text-white' 
+                                    : 'text-gray-400 hover:text-white'}`}
+                        >
+                            <span class="relative z-10">{framework.displayName}</span>
+                            {currentPath === framework.path ? (
+                                <span 
+                                    class="absolute inset-0 rounded-full -z-0 opacity-10"
+                                    style={`background-color: ${framework.color}`}
+                                ></span>
+                            ) : (
+                                <span 
+                                    class="absolute -inset-1 rounded-full blur-md -z-0 opacity-0 transition-all duration-300 group-hover:opacity-20"
+                                    style={`background-color: ${framework.color}`}
+                                ></span>
+                            )}
+                        </a>
+                    </>
+                ))}
+            </div>
+            <!-- GitHub Link -->
+            <a
+                href="https://github.com/Marve10s"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="p-2 text-gray-400 hover:text-white bg-gray-900/50 backdrop-blur-md rounded-full border border-gray-800/50 transition-all duration-300 hover:scale-110"
+                aria-label="GitHub Repository"
+            >
+                <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    width="20" 
+                    height="20" 
+                    viewBox="0 0 24 24" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    stroke-width="2" 
+                    stroke-linecap="round" 
+                    stroke-linejoin="round"
+                >
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                </svg>
+            </a>
+        </div>
+
+        <!-- Mobile menu button -->
+        <div class="md:hidden flex justify-center">
+            <button 
+                class="p-2 text-gray-400 hover:text-white bg-gray-900/50 backdrop-blur-md rounded-full border border-gray-800/50 transition-all duration-300 hover:scale-110"
+                aria-label="Toggle menu"
+            >
+                <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    class="h-5 w-5" 
+                    fill="none" 
+                    viewBox="0 0 24 24" 
+                    stroke="currentColor"
+                >
+                    <path 
+                        stroke-linecap="round" 
+                        stroke-linejoin="round" 
+                        stroke-width="2" 
+                        d="M4 6h16M4 12h16M4 18h16"
+                    />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile menu (hidden by default) -->
+        <div class="md:hidden hidden mt-4">
+            <div class="bg-gray-900/50 backdrop-blur-md rounded-2xl border border-gray-800/50 overflow-hidden">
+                {frameworks.map(framework => (
+                    <a
+                        href={framework.path}
+                        class={`block px-4 py-3 text-sm font-medium transition-all duration-300
+                            ${currentPath === framework.path
+                                ? 'text-white bg-gray-800/50'
+                                : 'text-gray-400 hover:text-white hover:translate-x-2'}`}
+                    >
+                        <span>{framework.displayName}</span>
+                        {currentPath === framework.path && (
+                            <span 
+                                class="ml-2 inline-block h-1.5 w-1.5 rounded-full"
+                                style={`background-color: ${framework.color}`}
+                            ></span>
+                        )}
+                    </a>
+                ))}
+            </div>
+        </div>
+    </nav>
+</header>
