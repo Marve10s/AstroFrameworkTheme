@@ -8,5 +8,14 @@ import alpine from '@astrojs/alpinejs';
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind(), icon(), react(), svelte(), alpine()]
+  integrations: [tailwind(), icon(), react(), svelte(), alpine()],
+  output: 'static',
+  build: {
+    inlineStylesheets: 'auto'
+  },
+  vite: {
+    ssr: {
+      noExternal: ['@astrojs/*']
+    }
+  }
 });
