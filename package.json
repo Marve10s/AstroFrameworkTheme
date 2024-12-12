@@ -1,10 +1,11 @@
 {
-  "name": "",
+  "name": "Marve10s",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "vercel-build": "npm install && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
@@ -21,6 +22,7 @@
     "@radix-ui/react-toast": "^1.2.2",
     "@radix-ui/react-tooltip": "^1.1.4",
     "@shadcn/ui": "^0.0.4",
+    "@types/alpinejs": "^3.13.11",
     "@types/react": "^18.3.14",
     "@types/react-dom": "^18.3.3",
     "alpinejs": "^3.14.7",
