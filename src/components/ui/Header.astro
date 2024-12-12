@@ -1,0 +1,184 @@
+---
+import { frameworks } from '../../data/navigation';
+const currentPath = Astro.url.pathname;
+
+// Fetch GitHub stars
+const REPO_URL = 'Marve10s/AstroFrameworkTheme';
+let stars = 0;
+try {
+    const response = await fetch(`https://api.github.com/repos/${REPO_URL}`);
+    if (response.ok) {
+        const data = await response.json();
+        stars = data.stargazers_count;
+    }
+} catch (error) {
+    console.error('Error fetching GitHub stars:', error);
+}
+---
+
+<header class="fixed top-0 left-0 right-0 z-50" x-data="{ isOpen: false }">
+    <nav class="container mx-auto px-4 py-6">
+        <!-- Desktop Navigation -->
+        <div class="hidden lg:grid grid-cols-[0.5fr_auto_0.5fr] xl:grid-cols-[1fr_auto_1fr] items-center">
+            <div></div>
+            <div class="bg-gray-900/50 backdrop-blur-md px-3 lg:px-4 xl:px-6 py-2.5 rounded-full border border-gray-800/50">
+                {frameworks.map((framework, index) => (
+                    <>
+                        {index !== 0 && (
+                            <span class="mx-2 lg:mx-3 xl:mx-4 text-gray-600">|</span>
+                        )}
+                        <a
+                            href={framework.path}
+                            class={`relative px-2 lg:px-2.5 xl:px-3 py-1.5 text-xs lg:text-sm transition-all duration-300 font-medium font-sans
+                                ${currentPath === framework.path 
+                                    ? 'text-white bg-gray-800/80 rounded-lg border border-gray-700/50 shadow-[0_0_15px_rgba(0,0,0,0.3)]' 
+                                    : 'text-gray-400 hover:text-white'}`}
+                        >
+                            <span class="relative z-10">{framework.displayName}</span>
+                            {currentPath === framework.path && (
+                                <span 
+                                    class="absolute bottom-0 left-0 h-[2px] w-full"
+                                    style={`background-color: ${framework.color}`}
+                                ></span>
+                            )}
+                        </a>
+                    </>
+                ))}
+            </div>
+            <div class="flex justify-end items-center gap-2 lg:gap-4">
+                <!-- GitHub Link -->
+                <!-- GitHub Link -->
+                <!-- GitHub Link -->
+
+
+                <a
+                    href="https://github.com/Marve10s"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="p-2 text-gray-400 hover:text-white bg-gray-900/50 backdrop-blur-md rounded-full border border-gray-800/50 transition-all duration-300 hover:scale-110 flex items-center"
+                    aria-label="GitHub Repository"
+                >
+                    <svg 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        width="18"
+                        height="18"
+                        class="lg:w-[20px] lg:h-[20px]"
+                        viewBox="0 0 24 24" 
+                        fill="none" 
+                        stroke="currentColor" 
+                        stroke-width="2" 
+                        stroke-linecap="round" 
+                        stroke-linejoin="round"
+                    >
+                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                    </svg>
+                </a>
+                <!-- Repository Link with Stars -->
+                <a 
+                    href="https://github.com/Marve10s/AstroFrameworkTheme" 
+                    target="_blank"
+                    class="group px-3 lg:px-4 py-2 bg-gradient-to-r from-blue-600/30 to-purple-600/30 hover:from-blue-600/40 hover:to-purple-600/40 text-blue-300 rounded-full transition-all duration-200 hover:scale-105 border border-blue-500/20 flex items-center gap-2"
+                >
+                    <svg class="w-4 h-4 lg:w-5 lg:h-5 transition-transform group-hover:rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                    </svg>
+                    <span class="text-xs lg:text-sm">Most interesting is here!</span>
+                    <span class="px-2 py-0.5 text-xs lg:text-sm bg-blue-500/20 rounded-full">{stars} ★</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <div class="lg:hidden">
+            <div class="flex justify-between items-center">
+                <a 
+                    href="https://github.com/Marve10s/AstroFrameworkTheme" 
+                    target="_blank"
+                    class="px-3 py-1.5 bg-gradient-to-r from-blue-600/30 to-purple-600/30 text-blue-300 rounded-full text-sm border border-blue-500/20 flex items-center gap-2"
+                >
+                    <span class="px-2 py-0.5 bg-blue-500/20 rounded-full">{stars} ★</span>
+                </a>
+                
+                <button 
+                    @click="isOpen = !isOpen"
+                    class="p-2 text-gray-400 hover:text-white bg-gray-900/50 backdrop-blur-md rounded-full border border-gray-800/50 transition-all duration-300"
+                    aria-label="Toggle menu"
+                >
+                    <svg 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        class="h-6 w-6 transform transition-transform duration-300"
+                        :class="{ 'rotate-90': isOpen }"
+                        fill="none" 
+                        viewBox="0 0 24 24" 
+                        stroke="currentColor"
+                    >
+                        <path 
+                            stroke-linecap="round" 
+                            stroke-linejoin="round" 
+                            stroke-width="2" 
+                            d="M4 6h16M4 12h16M4 18h16"
+                        />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Menu Overlay -->
+            <div
+                x-show="isOpen"
+                x-transition:enter="transition ease-out duration-200"
+                x-transition:enter-start="opacity-0 -translate-y-4"
+                x-transition:enter-end="opacity-100 translate-y-0"
+                x-transition:leave="transition ease-in duration-150"
+                x-transition:leave-start="opacity-100 translate-y-0"
+                x-transition:leave-end="opacity-0 -translate-y-4"
+                class="absolute top-20 left-4 right-4 bg-gray-900/95 backdrop-blur-lg rounded-2xl border border-gray-800/50 shadow-xl p-6"
+                @click.away="isOpen = false"
+            >
+                <div class="flex flex-col space-y-4">
+                    {frameworks.map((framework) => (
+                        <a
+                            href={framework.path}
+                            class={`px-4 py-2 rounded-lg transition-all duration-200 ${
+                                currentPath === framework.path
+                                    ? 'bg-gray-800 text-white'
+                                    : 'text-gray-400 hover:text-white hover:bg-gray-800/50'
+                            }`}
+                        >
+                            {framework.displayName}
+                            {currentPath === framework.path && (
+                                <span 
+                                    class="block h-[2px] mt-1 w-12"
+                                    style={`background-color: ${framework.color}`}
+                                ></span>
+                            )}
+                        </a>
+                    ))}
+                    
+                    <div class="pt-4 border-t border-gray-800/50">
+                        <a
+                            href="https://github.com/Marve10s"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="flex items-center gap-3 px-4 py-2 text-gray-400 hover:text-white rounded-lg hover:bg-gray-800/50 transition-all duration-200"
+                        >
+                            <svg 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                width="20" 
+                                height="20" 
+                                viewBox="0 0 24 24" 
+                                fill="none" 
+                                stroke="currentColor" 
+                                stroke-width="2" 
+                                stroke-linecap="round" 
+                                stroke-linejoin="round"
+                            >
+                                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                            </svg>
+                            <span>GitHub Profile</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>

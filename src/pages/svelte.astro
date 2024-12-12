@@ -1,0 +1,19 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Svelte/Hero.svelte";
+---
+
+<Layout 
+  title="Svelte + Astro"
+  bgColor="#1A1A1A"
+  primaryBallColor="rgba(255, 62, 0, 0.2)"  
+  secondaryBallColor="rgba(64, 179, 255, 0.2)"  
+  gridColor="rgba(255, 62, 0, 0.1)"
+  diagonalColor="rgba(255, 62, 0, 0.05)"
+  vignetteColor="#1A1A1A"
+>
+  <main>
+    <Hero client:only="svelte" />
+  </main>
+</Layout>
+

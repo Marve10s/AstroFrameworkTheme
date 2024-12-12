@@ -1,0 +1,15 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Alpine/Hero.astro';
+---
+
+<Layout 
+  title="Alpine.js + Astro"
+  primaryBallColor="#3B82F6"
+  secondaryBallColor="#1E3A8A"
+  gridColor="rgba(59, 130, 246, 0.05)"
+  diagonalColor="rgba(59, 130, 246, 0.1)"
+  vignetteColor="#1E293B"
+>
+  <Hero client:load />
+</Layout>

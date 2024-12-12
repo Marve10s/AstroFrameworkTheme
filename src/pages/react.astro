@@ -1,0 +1,21 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/React/Hero";
+import InteractiveShowcase from "../components/React/InteractiveShowcase";
+import UILibraries from "../components/React/UILibraries";
+---
+
+<Layout 
+  title="React + Astro"
+  primaryBallColor="#61DAFB"
+  secondaryBallColor="#087EA4"
+  gridColor="rgba(97, 218, 251, 0.05)"
+  diagonalColor="rgba(97, 218, 251, 0.1)"
+  vignetteColor="#061B2C"
+>
+  <main>
+    <Hero client:only="react" />
+    <UILibraries client:only="react" />
+    <InteractiveShowcase client:only="react" />
+  </main>
+</Layout>
