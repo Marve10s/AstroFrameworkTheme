@@ -33,21 +33,60 @@
             enter-from-class="opacity-0 -translate-y-8"
             enter-to-class="opacity-100 translate-y-0"
           >
-            <div class="flex flex-wrap gap-4">
-              <button 
-                @click="activeDemo = (activeDemo % 3) + 1"
-                class="px-6 py-3 rounded-lg bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-400 hover:to-emerald-400 text-white font-semibold transition-all duration-300 hover:-translate-y-0.5 shadow-lg hover:shadow-emerald-500/25"
+            <div class="flex gap-4">
+              <button
+                @click="() => activeDemo = (activeDemo % 3) + 1"
+                class="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white font-medium rounded-lg hover:shadow-lg hover:shadow-emerald-500/20 transition-all duration-300 hover:-translate-y-0.5"
               >
                 Try Demo {{ activeDemo }}
               </button>
-              <a
-                href="https://docs.astro.build/en/guides/integrations-guide/vue/"
-                class="px-6 py-3 rounded-lg border-2 border-emerald-500/50 hover:border-emerald-400 hover:bg-emerald-500/10 text-white font-semibold transition-all duration-300 hover:-translate-y-0.5"
+              <button
+                @click="scrollToFeatures"
+                class="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-emerald-400 to-emerald-500 text-white font-medium rounded-lg hover:shadow-lg hover:shadow-emerald-500/20 transition-all duration-300 hover:-translate-y-0.5 group"
               >
-                Get Started →
-              </a>
+                View Features
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  width="20" 
+                  height="20" 
+                  viewBox="0 0 24 24" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  stroke-width="2" 
+                  stroke-linecap="round" 
+                  stroke-linejoin="round" 
+                  class="transform group-hover:translate-y-1 transition-transform duration-200"
+                >
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <polyline points="19 12 12 19 5 12"></polyline>
+                </svg>
+              </button>
             </div>
           </Transition>
+
+          <Transition
+            appear
+            enter-active-class="transition duration-1000 delay-800"
+            enter-from-class="opacity-0 translate-x-12"
+            enter-to-class="opacity-100 translate-x-0"
+          >
+            <div class="flex flex-wrap gap-6 mt-6">
+              <div class="flex items-center gap-3 text-gray-400">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-emerald-400"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg>
+                <span>Composable</span>
+              </div>
+              <div class="flex items-center gap-3 text-gray-400">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-emerald-400"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+                <span>Reactive</span>
+              </div>
+              <div class="flex items-center gap-3 text-gray-400">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-emerald-400"><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313-12.454z"></path></svg>
+                <span>Developer Friendly</span>
+              </div>
+            </div>
+          </Transition>
+
+          
         </div>
 
         <!-- Right Column - Interactive Demo -->
@@ -61,7 +100,7 @@
             <div class="relative">
               <!-- Demo Container -->
               <div class="bg-gray-800/50 backdrop-blur-sm rounded-xl p-8 border border-gray-700/50 shadow-xl">
-                <div class="absolute  ">
+                <div class="absolute ">
                   <div class="flex gap-2">
                     <div class="w-3 h-3 rounded-full bg-red-500"></div>
                     <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
@@ -79,7 +118,7 @@
                   leave-from-class="opacity-100 translate-y-0"
                   leave-to-class="opacity-0 -translate-y-4"
                 >
-                  <div :key="activeDemo" class="pt-4">
+                  <div :key="activeDemo" class="pt-4 mt-2">
                     <!-- Counter Demo -->
                     <div v-if="activeDemo === 1" class="space-y-4">
                       <h3 class="text-xl font-semibold text-emerald-400">Reactive Counter</h3>
@@ -165,20 +204,12 @@ const tasks = ref([
   { text: 'Build awesome apps', done: false }
 ]);
 
-// Code example for display
-const codeExample = `<!-- Simple Vue Component -->
-< script setup>
-import { ref, computed } from 'vue'
-
-const count = ref(0)
-const doubled = computed(() => count.value * 2)
-</ script>
-
-<template>
-  <button @click="count++">
-    Count: {{ count }}
-  </button>
-
-  <p>Doubled: {{ doubled }}</p>
-</template>`;
+const scrollToFeatures = () => {
+  const features = document.getElementById('features');
+  if (features) {
+    const yOffset = -80; // Offset for fixed headers if any
+    const y = features.getBoundingClientRect().top + window.pageYOffset + yOffset;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+  }
+};
 </script>

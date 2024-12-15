@@ -1,5 +1,5 @@
 <template>
-  <section class="py-12 sm:py-24 px-4 sm:px-8 relative overflow-hidden">
+  <section id="features" class="features-section py-12 sm:py-24 px-4 sm:px-8 relative overflow-hidden">
     <div class="max-w-7xl mx-auto relative">
       <Transition
         appear

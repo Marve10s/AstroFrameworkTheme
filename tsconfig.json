@@ -5,10 +5,14 @@
     "**/*"
   ],
   "exclude": [
-    "dist"
+    "dist",
+    "src/components/Solid/**/*"
   ],
   "compilerOptions": {
-    "jsx": "preserve",
-    "jsxImportSource": "react"
+    "jsx": "react-jsx",
+    "types": ["react"],
+    "paths": {
+      "react": ["./node_modules/@types/react"]
+    }
   }
 }

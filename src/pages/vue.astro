@@ -4,7 +4,12 @@ import Hero from '../components/Vue/Hero.vue';
 import Features from '../components/Vue/Features.vue';
 ---
 
-<Layout title="Vue + Astro">
+<Layout 
+  title="Vue + Astro"
+  primaryBallColor="#4caf50"  
+  secondaryBallColor="#81c784"  
+>
+
   <main>
     <Hero client:only="vue" />
     <Features client:only="vue" />

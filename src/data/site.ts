@@ -1,3 +1,5 @@
+// Only for Astro page
+
 export const siteConfig = {
     title: 'Ultimate Astro',
     description: 'The Ultimate Multi-Framework Astro Template',

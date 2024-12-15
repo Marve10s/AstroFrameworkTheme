@@ -1,3 +1,4 @@
+/** @jsxImportSource react */
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import * as HoverCard from '@radix-ui/react-hover-card';
