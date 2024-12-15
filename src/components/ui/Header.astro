@@ -99,7 +99,6 @@ try {
                     class="p-2 text-gray-400 hover:text-white bg-gray-900/50 backdrop-blur-md rounded-full border border-gray-800/50 transition-all duration-300"
                     aria-label="Toggle menu"
                     data-mobile-menu
-                    client:visible
                 >
                     <svg 
                         xmlns="http://www.w3.org/2000/svg" 
@@ -175,27 +174,25 @@ try {
 <script>
     document.addEventListener('astro:page-load', () => {
         function setupMobileMenu() {
-        const button = document.querySelector('[data-mobile-menu]');
-        const menu = document.querySelector('[data-menu-content]');
+            const mobileMenuButton = document.querySelector('[data-mobile-menu]');
+            const mobileMenu = document.querySelector('[data-menu-content]');
 
-        if (button && menu) {
-            button.addEventListener('click', (e) => {
-                e.stopPropagation();
-                menu.classList.toggle('hidden');
-            });
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    mobileMenu.classList.toggle('hidden');
+                });
 
-            document.addEventListener('click', (e) => {
-                if (!button.contains(e.target) && !menu.contains(e.target)) {
-                    menu.classList.add('hidden');
-                }
-            });
+                // Close menu when clicking outside
+                document.addEventListener('click', (e) => {
+                    const target = e.target as Node;
+                    if (!mobileMenu.contains(target) && !mobileMenuButton.contains(target)) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
+            }
         }
-    } 
-
 
         setupMobileMenu();
     });
-
-   
-
 </script>
