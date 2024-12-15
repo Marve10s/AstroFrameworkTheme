@@ -1,8 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Hero from "../components/React/Hero.tsx";
-import InteractiveShowcase from "../components/React/InteractiveShowcase.tsx";
-import UILibraries from "../components/React/UILibraries.tsx";
+import InteractiveShowcase from "../components/React/Chat";
 ---
 
 <Layout 
@@ -13,7 +12,6 @@ import UILibraries from "../components/React/UILibraries.tsx";
 
   <main>
     <Hero client:only="react"/>
-    <UILibraries client:only="react" />
     <InteractiveShowcase client:only="react" />
   </main>
 </Layout>

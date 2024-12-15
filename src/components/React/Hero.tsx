@@ -1,4 +1,3 @@
-/** @jsxImportSource react */
 import React from 'react';
 import { motion, LazyMotion, domAnimation } from 'framer-motion';
 
@@ -110,6 +109,13 @@ import ColorPicker from '../components/ColorPicker';
   <ColorPicker client:load />
 </div>`;
 
+  const scrollToChat = () => {
+    const chatSection = document.getElementById('chat-section');
+    if (chatSection) {
+      chatSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="min-h-[80vh] relative flex items-center justify-center py-20 mt-20">      
       <div className="container mx-auto px-4 relative z-10">
@@ -133,6 +139,32 @@ import ColorPicker from '../components/ColorPicker';
             >
               Build dynamic, interactive components with the power of React in your Astro pages.
             </motion.p>
+          </LazyMotion>
+          <LazyMotion features={domAnimation}>
+            <motion.button
+              onClick={scrollToChat}
+              className="group px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-700 text-white rounded-xl font-medium hover:from-purple-700 hover:to-indigo-800 transition-all duration-200 shadow-lg hover:shadow-xl flex items-center gap-2 mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              whileHover={{ y: 2 }}
+            >
+              Chat with Me
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                className="h-5 w-5 transform group-hover:translate-y-1 transition-transform duration-200" 
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor"
+              >
+                <path 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round" 
+                  strokeWidth={2} 
+                  d="M19 14l-7 7m0 0l-7-7m7 7V3" 
+                />
+              </svg>
+            </motion.button>
           </LazyMotion>
         </div>
 
