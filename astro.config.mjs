@@ -4,11 +4,12 @@ import tailwind from '@astrojs/tailwind';
 import icon from 'astro-icon';
 import react from '@astrojs/react';
 import svelte from '@astrojs/svelte';
-import alpine from '@astrojs/alpinejs';
+
+import vue from '@astrojs/vue';
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind(), icon(), react(), svelte(), alpine()],
+  integrations: [tailwind(), icon(), react(), svelte(), vue()],
   output: 'static',
   build: {
     inlineStylesheets: 'auto'
