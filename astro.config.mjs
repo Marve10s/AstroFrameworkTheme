@@ -7,22 +7,17 @@ import svelte from '@astrojs/svelte';
 import vue from '@astrojs/vue';
 import solidJs from '@astrojs/solid-js';
 
+import sitemap from '@astrojs/sitemap';
+
 // https://astro.build/config
 export default defineConfig({
-  integrations: [
-    tailwind({
-      applyBaseStyles: true,
-    }),
-    icon(),
-    react({
-      include: ['**/React/**/*.{jsx,tsx}']
-    }),
-    svelte(),
-    vue(),
-    solidJs({
-      include: ['**/Solid/**/*.{jsx,tsx}']
-    })
-  ],
+  integrations: [tailwind({
+    applyBaseStyles: true,
+  }), icon(), react({
+    include: ['**/React/**/*.{jsx,tsx}']
+  }), svelte(), vue(), solidJs({
+    include: ['**/Solid/**/*.{jsx,tsx}']
+  }), sitemap()],
   output: 'static',
   build: {
     inlineStylesheets: 'auto'
