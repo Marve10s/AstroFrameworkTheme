@@ -1,5 +1,7 @@
 ---
 import { ClientRouter } from 'astro:transitions';
+import Analytics from '@vercel/analytics/astro'
+import { SEO } from 'astro-seo';
 import Background from '../components/ui/Background.astro';
 import Footer from '../components/ui/Footer.astro';
 import Header from '../components/ui/Header.astro';
@@ -16,7 +18,7 @@ interface Props {
 }
 
 const { 
-	title,
+	title, 
 	bgColor = '#0F1115',
 	primaryBallColor,
 	secondaryBallColor,
@@ -29,17 +31,36 @@ const {
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description">
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
+		<SEO
+			title={title}
+			titleTemplate='%s - Astro Framework Theme'
+			description=""
+			openGraph={{
+				basic: {
+					title: title || "Astro Framework Theme",
+					type: "website",
+					image: "/your-og-image.jpg",
+				}
+			}}
+			extend={{
+				meta: [
+					{ name: "twitter:image", content: "/your-twitter-image.jpg" },
+					{ name: "twitter:title", content: title },
+					{ name: "twitter:description", content: "Your site description" }
+				],
+			}}
+		/>
 		<title>{title}</title>
 		<ClientRouter />
+		<link rel="sitemap" href="/sitemap-index.xml" />
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 		<link href="https://api.fontshare.com/v2/css?f[]=cal-sans@400,500,600&display=swap" rel="stylesheet">
+		<Analytics />
 	</head>
 	<body 
 		class="m-0 min-h-screen relative font-sans" 
