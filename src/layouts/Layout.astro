@@ -37,19 +37,41 @@ const {
 		<SEO
 			title={title}
 			titleTemplate='%s - Astro Framework Theme'
-			description=""
+			description="Your comprehensive guide to building modern websites with Astro Framework"
 			openGraph={{
 				basic: {
 					title: title || "Astro Framework Theme",
 					type: "website",
-					image: "/your-og-image.jpg",
-				}
+					image: "/og-image.jpg",
+					url: "https://example.com",
+				},
+				optional: {
+					locale: "en_US",
+					siteName: "Astro Framework Theme",
+					description: "Your comprehensive guide to building modern websites with Astro Framework",
+				},
+			}}
+			twitter={{
+				card: "summary_large_image",
+				site: "@yourtwitterhandle",
+				creator: "@yourtwitterhandle",
+				title: title,
+				description: "Your comprehensive guide to building modern websites with Astro Framework",
+				image: "/twitter-image.jpg",
 			}}
 			extend={{
 				meta: [
 					{ name: "twitter:image", content: "/your-twitter-image.jpg" },
 					{ name: "twitter:title", content: title },
-					{ name: "twitter:description", content: "Your site description" }
+					{ name: "twitter:description", content: "Your site description" },
+					{ name: "theme-color", content: "#0F1115" },
+					{ name: "apple-mobile-web-app-capable", content: "yes" },
+					{ name: "apple-mobile-web-app-status-bar-style", content: "black" },
+				],
+				link: [
+					{ rel: "canonical", href: "https://example.com" },
+					{ rel: "icon", type: "image/png", href: "/favicon.png" },
+					{ rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
 				],
 			}}
 		/>
